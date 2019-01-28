@@ -35,9 +35,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
-<<<<<<< HEAD:OpenCV/ReadWebCam.py
 out.release()
 cv2.destroyAllWindows()
-=======
 cv2.destroyAllWindows()
->>>>>>> e5b54d09bf4b0d80ad73d471e5bc2e12e094f830:OpenCV/ReadWebCam.py
+
