@@ -17,25 +17,30 @@ plt.show()'''
 
 import cv2
 cap=cv2.VideoCapture(0)
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
-
+#fourcc = cv2.VideoWriter_fourcc(*'XVID')
+#out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
+th=127
+max_val=255
 
 while True:
     ret, Fr= cap.read()
-    frame = cv2.resize(Fr, (500, 400))   
-    gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-    RGBA=cv2.cvtColor(frame,cv2.COLOR_Luv2RGB)
-    out.write(Fr)
+    frame = cv2.resize(Fr, (500, 400))
     
+    gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    ret,o1 = cv2.threshold(gray,0,255,cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    RGBA=cv2.cvtColor(frame,cv2.COLOR_Luv2RGB)
+    ret,trunc = cv2.threshold(gray,127,255,cv2.THRESH_TRUNC)
+    
+    #out.write(Fr)
+    cv2.imshow('OTSU',o1)
     cv2.imshow('frame',frame)
     cv2.imshow('RGBA',RGBA)
     cv2.imshow('gray',gray)
-    
+    cv2.imshow('trunc',trunc)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
-out.release()
+#out.release()
 cv2.destroyAllWindows()
 cv2.destroyAllWindows()
 
