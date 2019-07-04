@@ -11,8 +11,8 @@ cap=cv.VideoCapture(0)
 while True:
     ret, frame= cap.read()
     Fr = cv.resize(frame, (400, 300))
-    #laplacian= cv.Laplacian(Fr,cv.CV_64F)
-    #sobelx= cv.Sobel(Fr,cv.CV_64F,1,0,ksize=5)
+    laplacian= cv.Laplacian(Fr,cv.CV_64F) # reSize
+    sobelx= cv.Sobel(Fr,cv.CV_64F,1,0,ksize=5)
     #sobely= cv.Sobel(Fr,cv.CV_64F,0,1,ksize=5)
     edges= cv.Canny(Fr,100,200)
     gray=cv.cvtColor(Fr,cv.COLOR_BGR2GRAY)
